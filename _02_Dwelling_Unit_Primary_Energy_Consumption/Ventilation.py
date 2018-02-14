@@ -41,12 +41,10 @@ class EnergySavingMethod(Enum):
 
 # ### 3.1. Electric Power of Mechanical Ventilation System / 機械換気設備の消費電力量
 
-# Horly electric power of mechanical ventilation system $ E_{E,V} $ is calculated by the equation below.
-# 
 # $$
 # \displaystyle E_{E,V} = E_{E,VG} + E_{E,VL}
 # $$
-# 
+
 # Where  
 # $ E_{E,V} $ is the horly electric power of mechanical ventilation system / 1時間当たりの機械換気設備の消費電力量 (kWh/h);  
 # $ E_{E,VG} $ is the hourly electric power of general mecanical ventilation system / 1時間当たりの全般換気設備の消費電力量 (kWh/h);    
@@ -70,13 +68,12 @@ get_E_E_V(0.3, 0.1)
 
 # ### 3.2 Electric Power of General Mechanical Ventilation System / 全般換気設備の消費電力量
 
-# The hourly electric power of general mechanical ventilation system $ E_{E,VG} $ is calculated by the equation below.  
-# 
 # $$
 # E_{E,VG} = f_{SFP} \times V_R \times 10^{-3}
 # $$
-# 
+
 # Where  
+# $ E_{E,VG} $ is the hourly electric power of general mecanical ventilation system / 1時間当たりの全般換気設備の消費電力量 (kWh/h);    
 # $ f_{SFP} $ is the SFP ( specific Fan Power ) of general mechanical ventilation system / 全般換気設備の比消費電力 (W/(m<sup>3</sup>/h));  
 # $ V_R $ is the referenced ventilation amount of general mechanical ventilation system / 全般換気設備の参照機械換気量 (m<sup>3</sup>/h).
 
@@ -98,17 +95,16 @@ get_E_E_VG(0.3, 3.5)
 
 # ### 3.3 Referenced Amount of Mechanical Ventilation System / 全般換気設備の参照機械換気量
 
-# The referenced amount of mechanical ventilation system $V_R$ is calculated by equation below.
-# 
 # $$
 # V_R = A_A \times H_R \times N \times a \div e
 # $$
-# 
+
 # Where  
+# $ V_R $ is the referenced ventilation amount of general mechanical ventilation system / 全般換気設備の参照機械換気量 (m<sup>3</sup>/h):  
 # $ A_A $ is the floor area / 床面積の合計 (m<sup>2</sup>);  
 # $ H_R $ is the referenced ceiling height / 参照天井高さ (m)(=2.4m);  
 # $ N $ is the ventilation rate / 換気回数 (1/h);  
-# $ a $ is the allowance ratio of the ventilation amount of the general mechanical ventilation system / 全般換気設備の換気量の余裕率 (=1.1)  
+# $ a $ is the allowance ratio of the ventilation amount of the general mechanical ventilation system / 全般換気設備の換気量の余裕率 (=1.1);  
 # $ e $ is the effective ventilation ratio / 有効換気量率.
 
 # In[8]:
@@ -248,15 +244,15 @@ def get_SFP_with_Wall_Mounted_Type(t):
 
 # #### (b) Calculation based on Power and Designed Ventilation Amount / 消費電力と設計風量により求める方法
 
-# $ f_{SFP} $ is calculated by the equation below, and the calculated value shall be round up to the second decimal place.  
 # $$
 # f_{SFP} = P \div V_d
 # $$
-# 
+
 # Where  
+# $ f_{SFP} $ is the SFP ( specific Fan Power ) of general mechanical ventilation system / 全般換気設備の比消費電力 (W/(m<sup>3</sup>/h));  
 # $ P $ is the power of the mechanical general ventilation system (W);  
 # $ V_d $ is the designed ventilation amount of the mechanical general ventilation system (m<sup>3</sup>/h).  
-# 
+
 # In this program, the calculated SFP is as the input. User shall calculate SFP by the another calculation sheet or program.
 
 # In[13]:
@@ -293,7 +289,6 @@ get_SFP(False, None, VentilationType.Duct2, EnergySavingMethod.Over75mm_DC)
 
 # ### 3.5 Electric Power of Local Mechanical Ventilation System / 局所換気設備の消費電力量
 
-# The electric power of local mechanical ventilation system $ E_{E,VL} $ is calculated by the equation below.  
 # $$
 # E_{E,VL} = \left\{
 # \begin{array}{ll}
@@ -302,8 +297,8 @@ get_SFP(False, None, VentilationType.Duct2, EnergySavingMethod.Over75mm_DC)
 # E_{E,VL,p} \mid _{p=3} \times \frac{4 - n_p}{4 - 3} + E_{E,VL,p} \mid _{p=3} \times \frac{n_p - 3}{4 - 3} & (3 \leq n_p \leq 4)
 # \end{array}
 # \right.
-# $$  
-# 
+# $$
+
 # Where  
 # $ E_{E,VL} $ is the hourly electric power of the local ventilation system / 1時間当たりの局所換気設備の消費電力量 (kWh/h);  
 # $ E_{E,VL,p} $ is the houlr electric power of the local ventilation system consumed by the p person(s) / 1時間当たりの居住人数がp人における局所換気設備の消費電力量 (kWh/h);  
@@ -404,8 +399,8 @@ data = {
          },
          'p3' : {
              LS.SKD_V.W  : [ 0.38, 0.38, 0.38, 0.38, 0.38, 0.38,10.13, 1.63, 1.63, 0.38, 1.00, 0.38,10.13, 1.00, 0.38, 0.38, 1.00, 1.00,19.26,19.26, 1.00, 1.00,18.84,20.09],
-             LS.SKD_V.HA : [ 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 1.00,10.00,21.14, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 1.63, 1.00,10.55,18.84],
-             LS.SKD_V.HH : [ 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 1.63,11.38, 1.00,10.63, 1.00,10.13, 1.00, 0.38, 0.38, 1.63,19.26,19.26, 0.38, 1.00,18.84,19.47, 9.92]
+             LS.SKD_V.HA : [ 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 1.00, 1.00,21.14, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 1.63, 1.00,10.55,18.84],
+             LS.SKD_V.HH : [ 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 1.63,11.38, 1.00, 1.63, 1.00,10.13, 1.00, 0.38, 0.38, 1.63,19.26,19.26, 0.38, 1.00,18.84,19.47, 9.92]
          },
          'p4' : { 
              LS.SKD_V.W  : [ 0.50, 0.50, 0.50, 0.50, 0.50, 0.50,13.51, 2.17, 2.17, 0.50, 1.33, 0.50,13.51, 1.33, 0.50, 0.50, 1.33, 1.33,25.68,25.68, 1.33, 1.33,25.12,26.79], 
@@ -458,6 +453,14 @@ get_E_E_VL_p(person = 'p2', day = '1/2', hour = 22 )
 #     <td>(Decimal Value)</td>
 # </tr>
 # </table>
+
+# #### Input Data
+
+# ````
+# DataGeneral = {
+#     'AllFloorArea': '' # Decimal Value represented as string
+# }
+# ````
 
 # #### Ventilation
 
@@ -520,14 +523,9 @@ get_E_E_VL_p(person = 'p2', day = '1/2', hour = 22 )
 #     <td colspan=2>Correct Coefficient for Temperature Exchange Rate for Air Leak when Exhaust Air is larger than Supply Air / 排気過多時における住宅外皮経由の漏気による温度交換効率の補正係数</td>
 #     <td>(Decimal Value)</td>
 # </tr>
+# </table>
 
-# Input data is represented by using Dictionary.
-
-# ````
-# DataGeneral = {
-#     'AllFloorArea': '' # Decimal Value represented as string
-# }
-# ````
+# #### Input Data
 
 # ````
 # DataVentilation = {
@@ -618,23 +616,8 @@ def getHoerlyElectricPower(DataGeneral, DataVentilation, day, hour ):
         else:
             return A_A / 30.0
 
-    def E_E_VL(A_A, day, hour):
-        if A_A < 30: # 床面積が30m2未満の場合は居住人数は1人とみなす
-            p = 1
-            return get_E_E_VL_p(person = 'p' + str(p), day = day, hour = hour)
-        elif A_A >= 120:   # 床面積が120m2以上の場合は居住人数は4人とみなす
-            p = 4
-            return get_E_E_VL_p(person = 'p' + str(p), day = day, hour = hour)
-        else:
-            p_minus = math.floor(A_A / 30)
-            p_plus  = math.floor(A_A / 30) + 1
-            n_p = A_A / 30
-            E_E_VL_p_minus = get_E_E_VL_p(person = 'p' + str(p_minus), day = day, hour = hour)
-            E_E_VL_p_plus  = get_E_E_VL_p(person = 'p' + str(p_plus),  day = day, hour = hour)
-            return get_E_E_VL(E_E_VL_p_minus, E_E_VL_p_plus, n_p)
-
     # Set vertual person based on sum of the floor area.
-    _person = getPerson(DataGeneral['AllFloorArea'])  
+    _person = getPerson(float(DataGeneral['AllFloorArea']))  
     
     # Convert the data from 'DataVentilation' as dictionary into 4 variants as 'does inputS FP', 'SFP', 'ventilation type' and 'energy saving method'.
     (_DoesInputSFP, _SFP, _t, _s) = Spec(DataVentilation)
@@ -684,7 +667,7 @@ DataVentilation = {
     }
 }
 DataGeneral = {
-    'AllFloorArea' : 120.08 # m2
+    'AllFloorArea' : '120.08' # m2
 }
 
 
