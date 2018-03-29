@@ -81,6 +81,18 @@ class TestFValue(unittest.TestCase):
                 actual = self._v.getValue(glassType, season, region, direction, lValue)
                 self.assertAlmostEqual(actual, expected, delta = 0.000001)
 
+    def test_InterpolateTest(self):
+        
+        test_patterns = [
+                ('Type1', 'Cooling', 'region1', 'N', 0.0, 0.139),
+                ('Type1', 'Cooling', 'region1', 'N', 0.4, 0.260),
+                ('Type1', 'Cooling', 'region1', 'N', 0.2, 0.1995),
+                ]
+        for glassType, season, region, direction, lValue, expected in test_patterns:
+            with self.subTest(gt = glassType, s = season, r = region, d = direction, l = lValue):
+                actual = self._v.getValue(glassType, season, region, direction, lValue)
+                self.assertAlmostEqual(actual, expected, delta = 0.000001)
+
 if __name__ == "__main__":
     unittest.main()
     
